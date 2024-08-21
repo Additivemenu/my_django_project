@@ -1,0 +1,27 @@
+### Require vscode extension "REST Client" to run this file
+
+### Get all items
+GET http://localhost:8000/api/items
+
+### Create a new item
+POST http://127.0.0.1:8000/api/items
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Item 2",
+    "description": "Second item"
+}
+
+### Update an item
+PUT http://127.0.0.1:8000/api/items/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Updated Item 2",
+    "description": "Updated second item"
+}
+
+### Delete an item
+DELETE http://127.0.0.1:8000/api/items/2
