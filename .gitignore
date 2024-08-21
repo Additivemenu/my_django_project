@@ -1,0 +1,64 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# If using SQLite, ignore the database file
+*.sqlite3
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# Environments
+.env
+.venv/
+env/
+ENV/
+venv/
+venv.bak/
+
+# Poetry
+poetry.lock
+.pdm.toml
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Local development artifacts
+*.local
+*.envrc
+*.swp
+
+# macOS
+.DS_Store
+
+# Others
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+.pytest_cache/
+.pyre/
