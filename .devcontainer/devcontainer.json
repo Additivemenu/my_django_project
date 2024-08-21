@@ -1,0 +1,20 @@
+{
+  "name": "Django Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-azuretools.vscode-docker",
+    "batisteo.vscode-django",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "humao.rest-client"  // <-- Add REST Client extension here
+  ],
+  "postCreateCommand": "poetry install",
+  "remoteUser": "root"
+}
