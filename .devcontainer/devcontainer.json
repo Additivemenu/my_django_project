@@ -1,7 +1,7 @@
 {
   "name": "Django Dev Container",
   "build": {
-    "dockerfile": "Dockerfile",
+    "dockerfile": "Dockerfile", // <-- Dockerfile path, you can also link to a docker compose file
     "context": ".."
   },
   "settings": {
@@ -15,6 +15,6 @@
     "ms-vscode-remote.vscode-remote-extensionpack",
     "humao.rest-client"  // <-- Add REST Client extension here
   ],
-  "postCreateCommand": "poetry install",
+  "postCreateCommand": "poetry install",    // <- command to run after container is created
   "remoteUser": "root"
 }

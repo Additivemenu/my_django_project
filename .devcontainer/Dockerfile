@@ -6,7 +6,7 @@ ARG POETRY_DIR
 # Set environment variables
 
 
-# Install system dependencies
+# ! Install system dependencies
 # RUN apt-get update && apt-get install -y \
 #     build-essential \
 #     libpq-dev \
@@ -25,7 +25,7 @@ ENV POETRY_NO_INTERACTION=1 \
     PYTHONPATH="/app:$PYTHONPATH"
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
-# Install Poetry
+# ! Install Poetry
 # RUN curl -sSL https://install.python-poetry.org | python3 - \
 #     && poetry config virtualenvs.create false
 

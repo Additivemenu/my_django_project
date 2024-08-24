@@ -1,12 +1,23 @@
 from ninja import NinjaAPI
+from django.http import JsonResponse
 from pydantic import BaseModel
 from typing import List, Optional
+from myapp.middlewares.logging import logging_middleware
+from myapp.middlewares.append_timestamp import append_timestamp_middleware
 
 # Initialize the Ninja API
 api = NinjaAPI()
 
+
+# TODO: Declare the type for item, and its serialization/deserialization
+
+
 # In-memory storage for items (no database)
-items = []
+items = [{
+    "id": 1,
+    "name": "Item 1",
+    "description": "First item"
+}]
 
 # Pydantic model for the Item
 class Item(BaseModel):
@@ -22,8 +33,13 @@ def create_item(request, item: Item):
 
 # Read - GET all items
 @api.get("/items", response=List[Item])
+@logging_middleware
+@append_timestamp_middleware
 def list_items(request):
-    return items
+    print("get all items - right before breakpoint")
+    
+    return JsonResponse({"items":items})
+    # return items
 
 # Read - GET single item by id
 @api.get("/items/{item_id}", response=Item)

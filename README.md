@@ -17,9 +17,17 @@ poetry run python manage.py runserver
 ```
 
 
+## debugger
+
+firsly you need to have a launch.json file under .vscode
++ launch the server in debug mode by click on "run and debug" button under "run and debug" panel
 
 
 ## Ninja api
 + [setup CRUD api with Ninja](./docs/ninja_api.md)
 
 find the API doc in apis > https files, similar to postman 
+
+
+
+## Django middleware and decorators

@@ -41,7 +41,7 @@ poetry.lock
 .pdm.toml
 
 # VS Code
-.vscode/
+# .vscode/
 
 # PyCharm
 .idea/
