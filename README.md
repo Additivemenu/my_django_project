@@ -31,3 +31,9 @@ find the API doc in apis > https files, similar to postman
 
 
 ## Django middleware and decorators
+
+similar to the interceptor in NestJS, onion model
+
+## python type safety
+pydantic
++ dict() vs. json()

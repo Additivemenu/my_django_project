@@ -1,45 +1,34 @@
 from ninja import NinjaAPI
 from django.http import JsonResponse
-from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 from myapp.middlewares.logging import logging_middleware
-from myapp.middlewares.append_timestamp import append_timestamp_middleware
+from myapp.middlewares.modify_item import modify_item_middleware
+from myapp.schema.Item import Item
 
 # Initialize the Ninja API
 api = NinjaAPI()
 
-
-# TODO: Declare the type for item, and its serialization/deserialization
-
-
 # In-memory storage for items (no database)
-items = [{
+items: List[Item] = [{
     "id": 1,
     "name": "Item 1",
     "description": "First item"
 }]
 
-# Pydantic model for the Item
-class Item(BaseModel):
-    id: int
-    name: str
-    description: Optional[str] = None
 
 # Create - POST
 @api.post("/items")
 def create_item(request, item: Item):
-    items.append(item.dict())
+    # items.append(item.model_dump_json())
+    items.append(item.model_dump())
     return {"message": "Item created successfully", "item": item}
 
 # Read - GET all items
 @api.get("/items", response=List[Item])
 @logging_middleware
-@append_timestamp_middleware
+@modify_item_middleware
 def list_items(request):
-    print("get all items - right before breakpoint")
-    
     return JsonResponse({"items":items})
-    # return items
 
 # Read - GET single item by id
 @api.get("/items/{item_id}", response=Item)
