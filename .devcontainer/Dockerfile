@@ -6,15 +6,23 @@ ARG POETRY_DIR
 # Set environment variables
 
 
-# ! Install system dependencies
+# ! Install system dependencies (linux)
 # RUN apt-get update && apt-get install -y \
 #     build-essential \
 #     libpq-dev \
 #     curl \
 #     && apt-get clean \
 #     && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y bash gcc git libcurl4-openssl-dev \
-    libc-dev libpq-dev openssh-server && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# try this if line 22 - 26 doesn't work
+# RUN apt-get update && apt-get install -y bash gcc git libcurl4-openssl-dev \
+#     libc-dev libpq-dev openssh-server && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# if below doesn't work, try the above
+RUN apt-get update \ 
+    && apt-get install -y bash gcc git libcurl4-openssl-dev libc-dev libpq-dev openssh-server \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
