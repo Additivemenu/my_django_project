@@ -1,6 +1,12 @@
 
 Demo project to learn Django features
 
+NEXT:
++ use docker-compose to inlude a postgres db
++ try to deploy the app to aws
+
+
+
 use poetry for package management
 + select the corresponding python interpreter by poetry
   + `cmd + shift + p` : `python: select interpreter` 

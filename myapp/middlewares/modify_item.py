@@ -8,7 +8,7 @@ from myapp.schema.Item import Item
 
 def modify_response(response: JsonResponse):
     # Decode the original content
-    data = json.loads(response.content)
+    data = json.loads(response.content)    # ! just like JSON.parse() in JS, convert JSON string to Python dictionary or list depending on the JSON content
     
     # !Deserialize data['items'] to a list of Item instances
     try:
@@ -30,7 +30,7 @@ def modify_response(response: JsonResponse):
     data['items'] = [item.dict() for item in items]
 
     # Encode the modified content back to JSON and update the response
-    response.content = json.dumps(data)
+    response.content = json.dumps(data) # ! just like JSON.stringify() in JS, convert Python dictionary or list to JSON string
 
 
 """

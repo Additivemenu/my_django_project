@@ -24,9 +24,10 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# ! note we set poetry env vars here
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV POETRY_NO_INTERACTION=1 \
+ENV POETRY_NO_INTERACTION=1 \  
     POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_HOME="opt/poetry" \
     VIRTUAL_ENV="/venv" \
@@ -38,7 +39,7 @@ ENV PATH="$POETRY_HOME/bin:$PATH"
 #     && poetry config virtualenvs.create false
 
 RUN pip install poetry
-RUN poetry config cache-dir $POETRY_DIR
+RUN poetry config cache-dir $POETRY_DIR  # ! note there is a cache dir
 
 # Set the working directory
 WORKDIR /workspace

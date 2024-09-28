@@ -13,7 +13,8 @@
     "ms-azuretools.vscode-docker",
     "batisteo.vscode-django",
     "ms-vscode-remote.vscode-remote-extensionpack",
-    "humao.rest-client"  // <-- Add REST Client extension here
+    "humao.rest-client",
+    "yzhang.markdown-all-in-one"
   ],
   "postCreateCommand": "poetry install",    // <- command to run after container is created
   "remoteUser": "root"
