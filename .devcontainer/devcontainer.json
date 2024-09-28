@@ -7,15 +7,16 @@
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },
+  // you can add the extension to devcontainer.json by right clicking on the extension in the extensions view
   "extensions": [
     "ms-python.python",
     "ms-python.vscode-pylance",
     "ms-azuretools.vscode-docker",
     "batisteo.vscode-django",
     "ms-vscode-remote.vscode-remote-extensionpack",
-    "humao.rest-client",
+    "humao.rest-client", // <- REST Client extension
     "yzhang.markdown-all-in-one"
   ],
-  "postCreateCommand": "poetry install",    // <- command to run after container is created
+  "postCreateCommand": "poetry install", // <- command to run after container is created
   "remoteUser": "root"
 }

@@ -3,10 +3,7 @@ FROM python:3.10-slim
 
 ARG POETRY_DIR
 
-# Set environment variables
-
-
-# ! Install system dependencies (linux)
+# ! Install system dependencies (linux) ----------------------------------------
 # RUN apt-get update && apt-get install -y \
 #     build-essential \
 #     libpq-dev \
@@ -24,6 +21,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+    # Set environment variables ---------------------------------------------------
 # ! note we set poetry env vars here
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -34,7 +32,7 @@ ENV POETRY_NO_INTERACTION=1 \
     PYTHONPATH="/app:$PYTHONPATH"
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
-# ! Install Poetry
+# ! Install Poetry --------------------------------------------------------------
 # RUN curl -sSL https://install.python-poetry.org | python3 - \
 #     && poetry config virtualenvs.create false
 

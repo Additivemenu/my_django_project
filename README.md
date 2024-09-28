@@ -2,8 +2,10 @@
 Demo project to learn Django features
 
 NEXT:
-+ use docker-compose to inlude a postgres db
++ use docker-compose to inlude a postgres db for chat app. Chat app is always a simple but good practice to learn a framework
 + try to deploy the app to aws
+  + this is important! and this skills is transferrable!
++ try to do an async programming demo app (e.g. user submit long-running tasks)
 
 
 
