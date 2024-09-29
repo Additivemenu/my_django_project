@@ -50,7 +50,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-## 3. Browsing the Database in pgAdmin 
+## 3. Browsing the Database in pgAdmin :white_check_mark:
 
 To access and browse the database using pgAdmin:
 

@@ -14,6 +14,18 @@ use poetry for package management
   + `cmd + shift + p` : `python: select interpreter` 
 
 
+## app demo 
+docs are mounted in respective directory
+
+myapp
++ simple item CRUD with pgsql db 
+
+chatapp -> serve as talkative backend
++ modelling one-to-one, one-to-many, many-to-many relationships
++ authentication with auth0
++ deploy
+
+
 ## run in dev container
 
 + note you need to explicitly define which vscode extension you want in the dev container
