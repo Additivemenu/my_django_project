@@ -4,7 +4,19 @@
   "service": "app",
   "workspaceFolder": "/workspace",
   "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+    "markdown.preview.fontSize": 14,
+    "markdown.preview.lineHeight": 1.6,
+    "markdown.preview.scrollPreviewWithEditor": false,
+    "markdown.preview.markEditorSelection": false,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "markdown.preview.doubleClickToSwitchToEditor": false,
+    "markdown.preview.openMarkdownLinks": "inPreview",
+    "markdown.styles": [
+      "https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css",
+      "https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css",
+    ]
   },
   // you can add the extension to devcontainer.json by right clicking on the extension in the extensions view
   "extensions": [
@@ -13,8 +25,9 @@
     "ms-azuretools.vscode-docker",
     "batisteo.vscode-django",
     "ms-vscode-remote.vscode-remote-extensionpack",
-    "humao.rest-client", // <- REST Client extension
-    "yzhang.markdown-all-in-one"
+    "humao.rest-client",
+    "yzhang.markdown-all-in-one",
+    "shd101wyy.markdown-preview-enhanced"
   ],
   "postCreateCommand": "poetry install", // <- command to run after container is created
   "remoteUser": "root"

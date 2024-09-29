@@ -1,12 +1,15 @@
 FROM python:3.10-slim
 
+# ! Install system dependencies (linux) ----------------------------------------
 RUN apt-get update \
     && apt-get install -y bash gcc git libcurl4-openssl-dev libc-dev libpq-dev openssh-server postgresql-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Set environment variables ---------------------------------------------------
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_HOME="/opt/poetry" \
