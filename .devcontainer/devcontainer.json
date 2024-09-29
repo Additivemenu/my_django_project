@@ -1,9 +1,8 @@
 {
   "name": "Django Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile", // <-- Dockerfile path, you can also link to a docker compose file
-    "context": ".."
-  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },

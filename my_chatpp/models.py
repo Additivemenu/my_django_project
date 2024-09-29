@@ -5,6 +5,7 @@ from django.db import models
 
 
 # TODO: user
+# authentication should be in another app with auth0
 
 # TODO: chat
 
