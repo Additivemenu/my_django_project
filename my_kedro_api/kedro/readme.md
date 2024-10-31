@@ -20,5 +20,12 @@ numerous data catalog class, which allows you to define how yo want your pipelin
 + kedro_datasets.pickle.PickleDataset
   + what we used in app
 
+> can we define a custom dataset?
+> + of course. use kedro.io > AbstractDataset to define flexible and powerful custom dataset
 
 https://docs.kedro.org/projects/kedro-datasets/en/kedro-datasets-2.0.0.post1/api/kedro_datasets.html#module-kedro_datasets
+
+
+# API doc
+
+[kedro.io](./docs/2-API-doc/kedro-io.md)

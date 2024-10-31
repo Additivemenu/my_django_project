@@ -30,6 +30,7 @@ def run_pipeline_json(input_data: dict) -> dict:
     # Configure data catalog with JSON output, basically define the input, output data source and format
     data_catalog = DataCatalog({
         "input_data": MemoryDataset(input_data),
+        # ! JSONDataset here
         "processed_data": JSONDataset(
             filepath=str(json_path),
             save_args={
