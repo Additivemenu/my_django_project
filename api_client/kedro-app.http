@@ -5,3 +5,26 @@ GET http://localhost:8000/api/kedro/
 
 ### run pipeline
 GET http://localhost:8000/api/kedro/run
+
+
+### run pipeline
+POST http://localhost:8000/api/kedro/process
+Content-Type: application/json
+
+{
+    "data": {
+        "value": 10,
+        "text": "test"
+    }
+}
+
+### run pipeline
+POST http://localhost:8000/api/kedro/process-json
+Content-Type: application/json
+
+{
+    "data": {
+        "value": 10,
+        "text": "test"
+    }
+}
