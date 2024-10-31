@@ -6,7 +6,7 @@ NEXT:
 + try to deploy the app to aws
   + this is important! and this skills is transferrable!
 + try to do an async programming demo app (e.g. user submit long-running tasks)
-
++ try to add a kedro app within myapp
 
 
 use poetry for package management

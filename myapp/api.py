@@ -1,4 +1,5 @@
 from ninja import NinjaAPI
+from ninja import Router
 from django.http import JsonResponse
 from typing import List
 # from myapp.middlewares.logging import logging_middleware
@@ -8,10 +9,11 @@ from django.shortcuts import get_object_or_404
 from django.core.serializers import serialize
 import json
 
-api = NinjaAPI()
+# Create router instance
+router = Router()
 
 # Create - POST
-@api.post("/items")
+@router.post("/items")
 def create_item(request, item: ItemSchema):
     db_item = Item.objects.create(**item.dict())
     return JsonResponse({
@@ -20,7 +22,7 @@ def create_item(request, item: ItemSchema):
     }, status=201)
 
 # Read - GET all items
-@api.get("/items")
+@router.get("/items")
 def list_items(request):
     items = Item.objects.all()
     return JsonResponse({
@@ -28,7 +30,7 @@ def list_items(request):
     })
 
 # Read - GET single item by id
-@api.get("/items/{item_id}")
+@router.get("/items/{item_id}")
 def get_item(request, item_id: int):
     item = get_object_or_404(Item, id=item_id)
     return JsonResponse({
@@ -36,7 +38,7 @@ def get_item(request, item_id: int):
     })
 
 # Update - PUT
-@api.put("/items/{item_id}")
+@router.put("/items/{item_id}")
 def update_item(request, item_id: int, data: ItemSchema):
     item = get_object_or_404(Item, id=item_id)
     for attr, value in data.dict().items():
@@ -48,7 +50,7 @@ def update_item(request, item_id: int, data: ItemSchema):
     })
 
 # Delete - DELETE
-@api.delete("/items/{item_id}")
+@router.delete("/items/{item_id}")
 def delete_item(request, item_id: int):
     item = get_object_or_404(Item, id=item_id)
     item.delete()

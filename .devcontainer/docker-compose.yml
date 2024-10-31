@@ -1,6 +1,8 @@
 version: '3.8'
 
+# multi-container setup
 services:
+  # the Django server app
   app:
     build: 
       context: .. # ! when building the image, the context is the root of the project
@@ -15,6 +17,7 @@ services:
     ports:
       - "8000:8000"
 
+  # defined volumne so even if the container is deleted, the data is not lost
   db:
     image: postgres:13
     restart: unless-stopped
@@ -25,7 +28,8 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: django_db
   
-  pgadmin: # for browsing the database in the browser
+  # for browsing the database in the browser
+  pgadmin: 
     image: dpage/pgadmin4
     restart: always
     environment:

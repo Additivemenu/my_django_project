@@ -1,0 +1,7 @@
+### Require vscode extension "REST Client" to run this file
+
+### Get all items
+GET http://localhost:8000/api/kedro/
+
+### run pipeline
+GET http://localhost:8000/api/kedro/run

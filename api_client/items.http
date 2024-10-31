@@ -1,10 +1,12 @@
 ### Require vscode extension "REST Client" to run this file
 
 ### Get all items
-GET http://localhost:8000/api/items
+GET http://localhost:8000/api/myapp/items
+
+
 
 ### Create a new item
-POST http://127.0.0.1:8000/api/items
+POST http://127.0.0.1:8000/api/myapp/items
 Content-Type: application/json
 
 {
@@ -13,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Update an item
-PUT http://127.0.0.1:8000/api/items/2
+PUT http://127.0.0.1:8000/api/myapp/items/2
 Content-Type: application/json
 
 {
@@ -23,4 +25,29 @@ Content-Type: application/json
 }
 
 ### Delete an item
-DELETE http://127.0.0.1:8000/api/items/2
+DELETE http://127.0.0.1:8000/api/myapp/items/2
+
+
+### Process data through Kedro pipeline
+POST http://localhost:8000/api/kedro/process
+Content-Type: application/json
+
+{
+    "items": [
+        {
+            "product": "Widget A",
+            "quantity": 5,
+            "price": 10.00
+        },
+        {
+            "product": "Widget B",
+            "quantity": 3,
+            "price": 20.00
+        },
+        {
+            "product": "Widget C",
+            "quantity": 2,
+            "price": 15.00
+        }
+    ]
+}

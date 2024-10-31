@@ -1,0 +1,11 @@
+# my_kedro_api/kedro/catalog.yml
+input_data:
+  type: pandas.CSVDataSet
+  filepath: my_kedro_api/kedro/data/input/names.csv
+
+intermediate_data:
+  type: pandas.MemoryDataSet
+  
+output_data:
+  type: pandas.CSVDataSet
+  filepath: my_kedro_api/kedro/data/output/processed_names.csv
