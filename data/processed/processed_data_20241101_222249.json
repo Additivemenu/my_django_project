@@ -1,0 +1,12 @@
+{
+  "data": {
+    "value": 20,
+    "text": "test"
+  },
+  "processed_at": "2024-11-01T22:22:49.105879",
+  "version": "1.0",
+  "metadata": {
+    "source": "kedro_pipeline",
+    "created_at": "2024-11-01T22:22:49.105886"
+  }
+}

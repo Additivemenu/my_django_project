@@ -4,6 +4,7 @@ from typing import Dict, Any
 from .kedro.runner import run_pipeline
 from .kedro.runner_json import run_pipeline_json
 from .kedro.runner_json_custom import run_pipeline_json_custom
+from .kedro.runners.dynamic_pipeline_runner import run_dynamic_pipeline
 
 router = Router()
 
@@ -42,4 +43,18 @@ def process_data_json_custom(request, input_data: InputData):
     print("input data:", input_data)
     
     result = run_pipeline_json_custom(input_data.data)
+    return {"result": result}
+
+# FIXME: problematic 
+@router.post("/process-dynamic-pipeline", response=OutputData)
+def process_dynamic_pipeline(request, input_data: InputData):
+    """Process data through the Kedro pipeline."""
+    
+    print("input data:", input_data)
+    
+    result = run_dynamic_pipeline(
+        input_data,
+        node_sequence=["enhance_numbers", "transform_text"]
+    )
+    
     return {"result": result}

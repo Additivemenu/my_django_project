@@ -1,6 +1,6 @@
 import pandas as pd
 
-def process_data(data: dict) -> dict:
+def enhance_num(data: dict) -> dict:
     """Process input data with enhanced output."""
     df = pd.DataFrame([data])
     numeric_columns = df.select_dtypes(include=['int64', 'float64']).columns

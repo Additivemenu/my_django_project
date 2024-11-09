@@ -39,3 +39,14 @@ Content-Type: application/json
         "text": "test"
     }
 }
+
+### run pipeline
+POST http://localhost:8000/api/kedro/process-dynamic-pipeline
+Content-Type: application/json
+
+{
+    "data": {
+        "value": 10,
+        "text": "test"
+    }
+}
