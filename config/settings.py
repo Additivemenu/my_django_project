@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REDIS_URL="redis://redis:6379/0"
 
 # Application definition
 

@@ -1,0 +1,67 @@
+### Variables
+@baseUrl = http://localhost:8000/api/redis
+@contentType = application/json
+
+### Create a new item
+POST {{baseUrl}}/items/
+Content-Type: {{contentType}}
+
+{
+    "name": "MacBook Pro",
+    "description": "14-inch MacBook Pro with M2 chip",
+    "price": 1999.99
+}
+
+### Create another item
+POST {{baseUrl}}/items/
+Content-Type: {{contentType}}
+
+{
+    "name": "iPhone 15 Pro",
+    "description": "Latest iPhone with USB-C",
+    "price": 999.99
+}
+
+### Get all items
+GET {{baseUrl}}/items/
+
+### Get specific item by ID
+# Replace 1 with actual item ID from create response
+GET {{baseUrl}}/items/1
+
+### Update an item
+# Replace 1 with actual item ID from create response
+PUT {{baseUrl}}/items/1
+Content-Type: {{contentType}}
+
+{
+    "name": "MacBook Pro M3",
+    "description": "Updated: 14-inch MacBook Pro with M3 chip",
+    "price": 2099.99
+}
+
+### Delete an item
+# Replace 1 with actual item ID from create response
+DELETE {{baseUrl}}/items/1
+
+### Test error case - Get non-existent item
+GET {{baseUrl}}/items/999
+
+### Batch create items for testing
+POST {{baseUrl}}/items/
+Content-Type: {{contentType}}
+
+{
+    "name": "iPad Pro",
+    "description": "12.9-inch iPad Pro with M2 chip",
+    "price": 1099.99
+}
+
+### Create item with invalid data (for testing error handling)
+POST {{baseUrl}}/items/
+Content-Type: {{contentType}}
+
+{
+    "name": "Invalid Item",
+    "description": "Missing price field",
+}

@@ -1,23 +1,22 @@
 version: '3.8'
 
-# multi-container setup
 services:
-  # the Django server app
   app:
-    build: 
-      context: .. # ! when building the image, the context is the root of the project
+    build:
+      context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspace:cached
     command: sleep infinity
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/django_db
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - db
+      - redis
     ports:
       - "8000:8000"
 
-  # defined volumne so even if the container is deleted, the data is not lost
   db:
     image: postgres:13
     restart: unless-stopped
@@ -27,18 +26,25 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: django_db
-  
-  # for browsing the database in the browser
-  pgadmin: 
+
+  pgadmin:
     image: dpage/pgadmin4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5050:80"  # vitst pgadmin at http://localhost:5050
-    depends_on: 
+      - "5050:80"
+    depends_on:
       - db
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
 
 volumes:
   postgres-data:
+  redis-data:
