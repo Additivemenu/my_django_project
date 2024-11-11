@@ -99,3 +99,7 @@ similar to the interceptor in NestJS, onion model
 ## python type safety
 pydantic
 + dict() vs. json()
+
+## pytest
+
+[pytest notes](./tests/docs/readme.md)
