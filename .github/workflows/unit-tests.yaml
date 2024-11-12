@@ -1,6 +1,6 @@
-name: Django Tests
+name: Run Unit Tests
 
-on:
+on: 
   push:
     branches: [ main ]
   pull_request:
@@ -9,67 +9,42 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    environment: test
     services:
       postgres:
-        image: postgres:13
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test_db
+        image: postgres:12.4
         ports:
           - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          DB_USER: test_user
+          DB_PASSWORD: test_password
+          DB_NAME: postgres
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Configure Poetry
-      run: |
-        poetry config virtualenvs.create true
-        poetry config virtualenvs.in-project true
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
 
-    - name: Cache Poetry virtualenv
-      uses: actions/cache@v3
-      id: poetry-cache
-      with:
-        path: ./.venv
-        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-poetry-
+      - name: Install dependencies
+        run: poetry install
 
-    - name: Install Dependencies
-      if: steps.poetry-cache.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root
-
-    - name: Install Project
-      run: poetry install --no-interaction
-        
-    - name: Run Migrations
-      env:
-        DJANGO_SETTINGS_MODULE: config.settings
-        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
-      run: |
-        poetry run python manage.py migrate
-        
-    - name: Run Tests
-      env:
-        DJANGO_SETTINGS_MODULE: tests.settings
-        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
-      run: |
-        poetry run pytest -v --cov=.
-
-    # Optional: Upload coverage report
-    - name: Upload Coverage Report
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: false
+      - name: Run tests
+        env:
+          DB_ENGINE: django.db.backends.postgresql
+          DB_USER: test_user
+          DB_PASSWORD: test_password
+          DB_NAME: postgres
+          DB_HOST: localhost
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
+        run: poetry run pytest 

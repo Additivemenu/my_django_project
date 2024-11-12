@@ -14,6 +14,15 @@ use poetry for package management
   + `cmd + shift + p` : `python: select interpreter` 
 
 
+## env setup
+
+
+```shell
+python manage.py check
+
+```
+
+
 ## app demo 
 docs are mounted in respective directory
 

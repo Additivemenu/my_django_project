@@ -35,6 +35,7 @@ env/
 ENV/
 venv/
 venv.bak/
+.env.*
 
 # Poetry
 poetry.lock
