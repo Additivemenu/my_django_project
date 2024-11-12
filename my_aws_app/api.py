@@ -68,7 +68,7 @@ def upload_to_s3(request, filename: str):
         bucket_name = settings.AWS_STORAGE_BUCKET_NAME
         s3_file_path = f'uploads/{filename}'
 
-        # Upload the file directly from the file path
+        # ! Upload the file directly from the file path
         s3_client.upload_file(
             file_path,
             bucket_name,

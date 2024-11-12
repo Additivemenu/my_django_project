@@ -1,9 +1,10 @@
-
 import pytest
 import os
 from django.conf import settings
 from unittest.mock import MagicMock, patch
 from django.test import Client
+# magic is that we don't import any thing about the api here, a bit different to NestJS
+# I guess there is a way to test a 'service' class directly in Django? it's just that I didn't organize code in ''service'' classes
 
 @pytest.fixture
 def mock_s3_client():
@@ -28,21 +29,30 @@ def test_image_setup(tmp_path):
     
     yield str(test_file)
     
-    # Cleanup
+    # ! Cleanup - anything after yield runs after the test
     settings.BASE_DIR = original_base_dir
 
+# @pytest.mark.skip(reason="Skipping this test temporarily")
 @pytest.mark.django_db
-@pytest.mark.skip(reason="Skipping this test temporarily")
 def test_successful_upload(mock_s3_client, test_image_setup):
     client = Client()
     
     # Configure test settings
     settings.AWS_STORAGE_BUCKET_NAME = 'test-bucket'
     settings.AWS_REGION = 'us-east-1'
+    settings.AWS_ACCESS_KEY_ID = 'test-key-id'
+    settings.AWS_SECRET_ACCESS_KEY = 'test-secret-key'
+    
+    # Configure mock S3 client behavior before making request
+    mock_s3_client.upload_file.return_value = None
     
     response = client.post(f'/api/aws-app/upload/test.png/')
     
-    assert response.status_code == 200 # FIXME: why 500?
+    # Add error debugging this test
+    if response.status_code == 500:
+        print(f"Server Error Response: {response.json()}")
+    
+    assert response.status_code == 200
     assert response.json()['message'] == 'Upload successful'
     assert response.json()['file_url'] == 'https://test-bucket.s3.us-east-1.amazonaws.com/uploads/test.png'
     
