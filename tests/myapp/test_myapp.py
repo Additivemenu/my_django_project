@@ -17,6 +17,9 @@ def sample_item_data():
 
 @pytest.fixture
 def create_sample_item(sample_item_data):
+    """
+    this fixture will create an item in the database using the sample_item_data fixture
+    """
     return Item.objects.create(**sample_item_data)
 
 
@@ -35,6 +38,9 @@ class TestItemAPI:
         By default, it wraps each test in a transaction
         After each test, it rolls back the transaction
         !This ensures tests don't affect each other even when using the same test database
+    
+    But note @pytest.mark.django_db still need database access, so you need a database connection to run these tests
+        we have defined the database config in /tests/settings.py
     """
     
     def test_database_is_empty_at_start(self, client):
