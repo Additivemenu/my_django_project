@@ -15,3 +15,4 @@ def get_user_status(age):
     if age < 65:
         return "adult"
     return "senior"
+
