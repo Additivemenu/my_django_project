@@ -17,6 +17,7 @@ redis = "^5.2.0"
 pytest = "^8.3.3"
 pytest-django = "^4.9.0"
 django-environ = "^0.11.2"
+boto3 = "^1.35.58"
 
 [build-system]
 requires = ["poetry-core"]

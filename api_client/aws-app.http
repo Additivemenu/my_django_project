@@ -1,0 +1,49 @@
+### Variables
+@baseUrl = http://localhost:8000/api/aws-app
+@filename = typing-indicator.png
+
+### Upload file to S3
+POST {{baseUrl}}/upload/{{filename}}/
+Content-Type: application/json
+
+### Upload different file with different filename
+POST {{baseUrl}}/upload/test.jpg/
+Content-Type: application/json
+
+### Upload non-existent file (should return 404)
+POST {{baseUrl}}/upload/nonexistent.txt/
+Content-Type: application/json
+
+
+
+
+
+
+
+# ### Environment specific variables
+# ### environments can be switched using ctrl+alt+e or cmd+alt+e
+
+# # @name local
+# @local_baseUrl = http://localhost:8000/api
+
+# # @name staging
+# @staging_baseUrl = https://staging-api.example.com/api
+
+# # @name production
+# @production_baseUrl = https://api.example.com/api
+
+# ### Upload file in staging environment
+# # @name uploadFileStaging
+# POST {{staging_baseUrl}}/upload/{{filename}}/
+# Content-Type: application/json
+
+# ### Example response structure
+# # {
+# #     "message": "Upload successful",
+# #     "file_url": "https://bucket-name.s3.region.amazonaws.com/uploads/example.pdf"
+# # }
+
+# ### Example error response structure
+# # {
+# #     "error": "File example.pdf not found in the specified directory"
+# # }

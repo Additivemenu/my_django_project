@@ -86,7 +86,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # TODO: use environment variables for database settings
 DATABASES = {
     'default': {
-           'ENGINE': env('DB_ENGINE', default=os.getenv('DB_ENGINE', 'django.db.backends.sqlite3')),
+        'ENGINE': env('DB_ENGINE', default=os.getenv('DB_ENGINE', 'django.db.backends.sqlite3')),
         'NAME': env('DB_NAME', default=os.getenv('DB_NAME', 'db.sqlite3')),
         'USER': env('DB_USER', default=os.getenv('DB_USER', 'postgres')),
         'PASSWORD': env('DB_PASSWORD', default=os.getenv('DB_PASSWORD', 'postgres')),
@@ -96,6 +96,11 @@ DATABASES = {
 }
 print(DATABASES)
 
+# AWS settings
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=os.getenv('AWS_ACCESS_KEY_ID', 'dummy_aws_access_key_id'))
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=os.getenv('AWS_SECRET_ACCESS_KEY', 'dummy_aws_secret_access_key'))
+AWS_REGION = env('AWS_REGION', default=os.getenv('AWS_REGION', 'ap-southeast-2'))
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', default=os.getenv('AWS_STORAGE_BUCKET_NAME', '5432'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
