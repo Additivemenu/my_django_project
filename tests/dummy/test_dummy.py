@@ -26,6 +26,7 @@ def test_add():
 def sample_numbers():
     return [1, 2, 3, 4, 5]
 
+# ! you see the input to a test function is the fixture name -> this test function is using the fixture to create mock data or behavior
 def test_using_fixture(sample_numbers):
     assert len(sample_numbers) == 5
     assert sum(sample_numbers) == 15
@@ -35,7 +36,7 @@ def test_using_fixture(sample_numbers):
 def database():
     print("\nConnecting to test database...")  # Setup
     db = {"connected": True}
-    yield db  # This is what the test will use
+    yield db  # ! This is what the test will use
     print("\nDisconnecting test database...")  # Teardown
 
 def test_database(database):
@@ -51,13 +52,13 @@ def test_database(database):
 def test_add_params(a, b, expected):
     assert add(a, b) == expected
 
-# 5. Testing Exceptions
+# 5. FIXME: Testing Exceptions ??????????
 def test_divide_by_zero():
     with pytest.raises(ValueError) as exc_info:
         divide(10, 0)
     assert str(exc_info.value) == "Cannot divide by zero"
 
-# 6. Mark Examples
+# ! 6. Mark Examples
 @pytest.mark.slow
 def test_slow_operation():
     import time
@@ -72,7 +73,7 @@ def test_future_feature():
 def test_known_bug():
     assert 1 == 2  # This will fail but won't affect test suite results
 
-# 7. Test Class Organization
+# ! 7. Test Class Organization
 class TestUserStatus:
     def test_minor(self):
         assert get_user_status(15) == "minor"
@@ -84,7 +85,14 @@ class TestUserStatus:
         assert get_user_status(70) == "senior"
     
     def test_invalid_age(self):
-        with pytest.raises(ValueError):
+        """
+        Here's what the with statement is doing:
+            pytest.raises(ValueError) is a context manager provided by pytest.
+            The context manager expects a ValueError exception to be raised within the with block.
+            If get_user_status(-5) raises a ValueError, the test passes.
+            If no exception or a different exception is raised, the test fails.
+        """
+        with pytest.raises(ValueError): # what is 'with' - context manager
             get_user_status(-5)
 
 # 8. Fixture Scope Example
