@@ -9,6 +9,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v3
@@ -22,10 +33,43 @@ jobs:
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
 
-    - name: Install Dependencies
+    - name: Configure Poetry
       run: |
-        poetry install
+        poetry config virtualenvs.create true
+        poetry config virtualenvs.in-project true
 
-    - name: Run Tests
+    - name: Cache Poetry virtualenv
+      uses: actions/cache@v3
+      id: poetry-cache
+      with:
+        path: ./.venv
+        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-
+
+    - name: Install Dependencies
+      if: steps.poetry-cache.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+
+    - name: Install Project
+      run: poetry install --no-interaction
+        
+    - name: Run Migrations
+      env:
+        DJANGO_SETTINGS_MODULE: config.settings
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
       run: |
-        poetry run pytest -v
+        poetry run python manage.py migrate
+        
+    - name: Run Tests
+      env:
+        DJANGO_SETTINGS_MODULE: tests.settings
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
+      run: |
+        poetry run pytest -v --cov=.
+
+    # Optional: Upload coverage report
+    - name: Upload Coverage Report
+      uses: codecov/codecov-action@v3
+      with:
+        fail_ci_if_error: false
