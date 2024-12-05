@@ -1,0 +1,2 @@
+### Get an event
+GET http://localhost:8000/api/sse/test-event/task_start
