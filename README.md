@@ -14,6 +14,44 @@ use poetry for package management
   + `cmd + shift + p` : `python: select interpreter` 
 
 
+# start server
+```shell
+# option1:
+# start server. You can query the api on your local machine ouside the dev container
+python manage.py runserver 0.0.0.0:8000
+
+# option2: 
+# or run in debug mode 
+
+```
+
+for option 2, you need to have below in launch.json under `.vscode`
+```json
+ "args": [
+              "runserver",
+              "0.0.0.0:8000", // or any other port you wish to use
+          ],
+```
+
+if you just have below, you cannot access the API in local machine outside the dev container!
++ something related to how dev container resolve the `localhost`
+```json
+ "args": [
+              "runserver",
+              "8000", // or any other port you wish to use
+          ],
+
+```
+
+
+
+
+
+
+# CORS setup in django: 
+https://medium.com/django-unleashed/handling-cors-in-django-rest-framework-a-comprehensive-guide-ec11b0bc6807
+
+
 # This Project specific
 
 
@@ -25,6 +63,7 @@ docs are mounted in respective app directory. Here is just overview:
 
 [myapp](./myapp/docs/readme.md)
 + simple item CRUD with pgsql db 
++ with a simple SSE api
 
 [chat app](./my_chatpp/docs/mychatapp.md) -> serve as talkative backend
 + modelling one-to-one, one-to-many, many-to-many relationships

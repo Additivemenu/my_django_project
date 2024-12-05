@@ -4,7 +4,6 @@
 GET http://localhost:8000/api/myapp/items
 
 
-
 ### Create a new item
 POST http://127.0.0.1:8000/api/myapp/items
 Content-Type: application/json
@@ -51,3 +50,9 @@ Content-Type: application/json
         }
     ]
 }
+
+### Get an event
+GET http://localhost:8000/api/myapp/event
+
+# ### Get SSE event
+# GET http://localhost:8000/api/myapp/sse

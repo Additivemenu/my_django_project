@@ -14,7 +14,7 @@
           "program": "${workspaceFolder}/manage.py",    // ! so you need to launch the server in debug mode by hitting "run and debug" button in "run and debug" tab
           "args": [
               "runserver",
-              "8000", // or any other port you wish to use
+              "0.0.0.0:8000", // or any other port you wish to use
           ],
           "env": {
               "PYTHONUNBUFFERED": "1",
