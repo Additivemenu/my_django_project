@@ -5,6 +5,7 @@ from myapp.api import router as myapp_router
 from my_redis_app.api import router as redis_router
 from my_aws_app.api import router as aws_router
 from my_sse_app.api import router as sse_router
+from my_sse_app.controllers.task import router as task_router
 
 # ! this should be the entry point of your NinjaAPI
 api = NinjaAPI()
@@ -16,4 +17,5 @@ api.add_router("/myapp/", myapp_router)
 api.add_router("/redis/items", redis_router)
 api.add_router("/aws-app/", aws_router)
 api.add_router("/sse/", sse_router)
+api.add_router("/sse-tasks/", task_router)
 

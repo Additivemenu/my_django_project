@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'ninja',
     'corsheaders',  # !
-    "myapp"
+    "myapp",
+    "my_sse_app",
 ]
 
 # ! is the middleware order important?
