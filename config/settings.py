@@ -38,8 +38,10 @@ REDIS_URL="redis://redis:6379/0"
 
 # Application definition
 
+# Django looks for templates in the application template directories by order of appearance in the INSTALLED_APPS setting. 
 INSTALLED_APPS = [
-    "django.contrib.admin",
+    'p2_account.apps.P2AccountConfig', # ensure that our custom authentication templates will be used
+    "django.contrib.admin", # includes standard authentication templates
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -55,10 +57,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # !
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware", # Handles the current session across requests
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",  # Associates users with requests using sessions
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]

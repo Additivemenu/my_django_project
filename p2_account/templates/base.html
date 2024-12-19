@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    {% comment %} The base template defines a title block and a content block that can be filled with content by the templates that extend from it. {% endcomment %}
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <span class="logo">Bookmarks</span>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
