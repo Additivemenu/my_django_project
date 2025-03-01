@@ -30,9 +30,9 @@ RUN poetry install --no-root
 
 # We don't copy the rest of the code here, as it will be mounted as a volume
 
-EXPOSE 8000
+EXPOSE 6237
 
-CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:6237"]
 
 
 # Using an official Python runtime as a parent image

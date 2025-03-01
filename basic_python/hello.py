@@ -9,7 +9,7 @@ from faker import Faker
 fake = Faker()
 
 # Generate 1 million rows of data
-rows = 1_000_000
+rows = 3_000_0
 data = {
     "Name": [fake.name() for _ in range(rows)],
     "Age": [random.randint(18, 90) for _ in range(rows)],

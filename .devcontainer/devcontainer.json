@@ -18,6 +18,13 @@
       "https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css",
     ]
   },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [
+    5432,
+    2222,
+    6379,
+    6237  // django server port
+  ],
   // you can add the extension to devcontainer.json by right clicking on the extension in the extensions view
   "extensions": [
     "ms-python.python",

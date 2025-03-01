@@ -15,7 +15,7 @@ services:
       - db
       - redis
     ports:
-      - "8000:8000"
+      - "6237:6237"
 
   db:
     image: postgres:13

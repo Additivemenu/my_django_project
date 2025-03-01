@@ -10,11 +10,11 @@
           "name": "Python: Current File",
           "type": "python",
           "request": "launch",
-          // "pythonPath": "${workspaceFolder}/backend/venv/bin/python", // path to your virtual environment's python
+          // "python": "${workspaceFolder}/backend/venv/bin/python", // path to your virtual environment's python
           "program": "${workspaceFolder}/manage.py",    // ! so you need to launch the server in debug mode by hitting "run and debug" button in "run and debug" tab
           "args": [
               "runserver",
-              "0.0.0.0:8000", // or any other port you wish to use
+              "0.0.0.0:6237", // or any other port you wish to use
           ],
           "env": {
               "PYTHONUNBUFFERED": "1",

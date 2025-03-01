@@ -18,7 +18,7 @@ use poetry for package management
 ```shell
 # option1:
 # start server. You can query the api on your local machine ouside the dev container
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:6237
 
 # option2: 
 # or run in debug mode 
@@ -29,7 +29,7 @@ for option 2, you need to have below in launch.json under `.vscode`
 ```json
  "args": [
               "runserver",
-              "0.0.0.0:8000", // or any other port you wish to use
+              "0.0.0.0:6237", // or any other port you wish to use
           ],
 ```
 
@@ -38,7 +38,7 @@ if you just have below, you cannot access the API in local machine outside the d
 ```json
  "args": [
               "runserver",
-              "8000", // or any other port you wish to use
+              "6237", // or any other port you wish to use
           ],
 
 ```
